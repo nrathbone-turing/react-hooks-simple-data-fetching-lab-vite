@@ -1,5 +1,7 @@
 // create your App component here
 import { useState, useEffect } from 'react'
+import DogDisplay from './dogDisplay' 
+import FetchButton from './fetchButton'
 
 function App() {
   // State setup
@@ -15,7 +17,7 @@ function App() {
       const response = await fetch('https://dog.ceo/api/breeds/image/random')
       if (!response.ok) throw new Error('Something went wrong')
       const json = await response.json()
-      setData(json)
+      setData(json.message)
     } catch (err) {
       setError(err.message)
     } finally {
@@ -42,7 +44,9 @@ function App() {
     <div className="app">
       <h1>Dog Roulette</h1>
       {/* Placeholder to confirm API fetch where I will render actual data */}
-      <pre>{JSON.stringify(data, null, 2)}</pre>
+      {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
+      <DogDisplay data={data} loading={loading} error={error}/>
+      <FetchButton fetchData={fetchData}/>
     </div>
   )
 }
