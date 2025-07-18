@@ -40,6 +40,8 @@ function App() {
   if (error) return <p style={{ color: 'red' }}>Error: {error}</p>
   if (!data) return null // or placeholder
 
+  // Future refactor: clean up the image dimensions to be more responsive in size
+  // and also make a container for the DogDisplay and FetchButton so that the entire page doesn't reload upon button press
   return (
     <div className="app">
       <h1>Dog Roulette</h1>
